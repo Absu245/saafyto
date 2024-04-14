@@ -11,6 +11,8 @@ _G.imready = true
 		local LogService = game:GetService("LogService")
 LogService.MessageOut:Connect(function(Message: string, MessageType: Enum.MessageType)
     if MessageType == Enum.MessageType.MessageError and Message:match("^Server Kick Message:") then
+if _G.kickedalr then return end
+_G.kickedalr = true
        		local ts = game:GetService("TeleportService")
 
 		local p = game:GetService("Players").LocalPlayer
