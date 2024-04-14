@@ -1,0 +1,17 @@
+if _G.load1ed then warn('alr loaded') return end
+_G.load1ed = true
+queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
+queueonteleport("")
+bind = game.Players.LocalPlayer:GetMouse()
+bind.KeyDown:Connect(function(keybind)
+	if keybind == ('f') then
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0,999999999999999,0)
+		task.wait(0.5)
+		local ts = game:GetService("TeleportService")
+
+		local p = game:GetService("Players").LocalPlayer
+
+			ts:TeleportToPlaceInstance(game.PlaceId, game.JobId, p)
+	end
+	end)
+	warn('loaded')
