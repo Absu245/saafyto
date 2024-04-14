@@ -1,7 +1,6 @@
 if _G.load1ed then warn('alr loaded') return end
 _G.load1ed = true
 queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
-queueonteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/Absu245/saafyto/main/leavewnotloosingtime'))()")
 bind = game.Players.LocalPlayer:GetMouse()
 bind.KeyDown:Connect(function(keybind)
 	if keybind == (_G.keybind) then
@@ -16,7 +15,7 @@ _G.kickedalr = true
        		local ts = game:GetService("TeleportService")
 
 		local p = game:GetService("Players").LocalPlayer
-
+queueonteleport("_G.keybind = _G.keybind loadstring(game:HttpGet('https://raw.githubusercontent.com/Absu245/saafyto/main/leavewnotloosingtime'))()")
 			ts:TeleportToPlaceInstance(game.PlaceId, game.JobId, p)
     end
 end)
