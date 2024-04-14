@@ -8,12 +8,16 @@ bind.KeyDown:Connect(function(keybind)
 if _G.imready then return end
 _G.imready = true
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0,999999999999999,0)
-		task.wait(_G.rejointime)
-		local ts = game:GetService("TeleportService")
+		local LogService = game:GetService("LogService")
+LogService.MessageOut:Connect(function(Message: string, MessageType: Enum.MessageType)
+    if MessageType == Enum.MessageType.MessageError and Message:match("^Server Kick Message:") then
+       		local ts = game:GetService("TeleportService")
 
 		local p = game:GetService("Players").LocalPlayer
 
 			ts:TeleportToPlaceInstance(game.PlaceId, game.JobId, p)
+    end
+end)
 	end
 	end)
 	warn('loaded')
