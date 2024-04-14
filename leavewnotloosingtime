@@ -1,24 +1,29 @@
 if _G.load1ed then warn('alr loaded') return end
 _G.load1ed = true
-queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
-bind = game.Players.LocalPlayer:GetMouse()
-bind.KeyDown:Connect(function(keybind)
-	if keybind == (_G.keybind) then
-if _G.imready then return end
-_G.imready = true
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0,999999999999999,0)
-		local LogService = game:GetService("LogService")
-LogService.MessageOut:Connect(function(Message: string, MessageType: Enum.MessageType)
-    if MessageType == Enum.MessageType.MessageError and Message:match("^Server Kick Message:") then
-if _G.kickedalr then return end
-_G.kickedalr = true
-       		local ts = game:GetService("TeleportService")
 
-		local p = game:GetService("Players").LocalPlayer
-queueonteleport("_G.keybind = _G.keybind loadstring(game:HttpGet('https://raw.githubusercontent.com/Absu245/saafyto/main/leavewnotloosingtime'))()")
-			ts:TeleportToPlaceInstance(game.PlaceId, game.JobId, p)
-    end
+warn('loaded')
+
+local Players = game:GetService('Players')
+local LogService = game:GetService("LogService")
+local TeleportService = game:GetService("TeleportService")
+local UserInputService = game:GetService('UserInputService')
+local LocalPlayer = Players.LocalPlayer
+local Character = LocalPlayer.Character
+local Humanoid = Character:FindFirstChildWhichIsA('Humanoid')
+local RootPart = Humanoid.RootPart
+local PlaceId, JobId = game.PlaceId, game.JobId
+local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
+UserInputService.InputBegan:Connect(function(Input: InputObject, gameProcessedEvent: boolean)
+    if gameProcessedEvent or Input.KeyCode.Name ~= _G.keybind or _G.imready then return end    
+    _G.imready = true
+    RootPart.CFrame = CFrame.new(0,99e9,0)
 end)
-	end
-	end)
-	warn('loaded')
+LogService.MessageOut:Connect(function(Message: string, MessageType: Enum.MessageType)
+    if _G.kickedalr or MessageType ~= Enum.MessageType.MessageError or not Message:match("^Server Kick Message:") then return end
+    _G.kickedalr = true
+    queueonteleport(([[
+    _G.keybind = "%s"
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/Absu245/saafyto/main/leavewnotloosingtime'))()
+    ]]):format(_G.keybind))
+    TeleportService:TeleportToPlaceInstance(PlaceId, JobId, LocalPlayer)
+end)
