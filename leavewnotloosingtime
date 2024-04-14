@@ -4,9 +4,11 @@ queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus 
 queueonteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/Absu245/saafyto/main/leavewnotloosingtime'))()")
 bind = game.Players.LocalPlayer:GetMouse()
 bind.KeyDown:Connect(function(keybind)
-	if keybind == ('f') then
+	if keybind == (_G.keybind) then
+if _G.imready then return end
+_G.imready = true
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0,999999999999999,0)
-		task.wait(0.5)
+		task.wait(_G.rejointime)
 		local ts = game:GetService("TeleportService")
 
 		local p = game:GetService("Players").LocalPlayer
