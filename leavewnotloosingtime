@@ -11,13 +11,23 @@ local LocalPlayer = Players.LocalPlayer
 local Character = LocalPlayer.Character
 local Humanoid = Character:FindFirstChildWhichIsA('Humanoid')
 local RootPart = Humanoid.RootPart
+
 local PlaceId, JobId = game.PlaceId, game.JobId
+
 local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
+
+LocalPlayer.CharacterAppearanceLoaded:Connect(function(char: Model)
+    Character = char
+    Humanoid = Character:FindFirstChildWhichIsA('Humanoid')
+    RootPart = Humanoid.RootPart
+end)
+
 UserInputService.InputBegan:Connect(function(Input: InputObject, gameProcessedEvent: boolean)
-    if gameProcessedEvent or Input.KeyCode.Name ~= _G.keybind or _G.imready then return end    
+    if gameProcessedEvent or not RootPart or Input.KeyCode.Name ~= _G.keybind or _G.imready then return end    
     _G.imready = true
     RootPart.CFrame = CFrame.new(0,99e9,0)
 end)
+
 LogService.MessageOut:Connect(function(Message: string, MessageType: Enum.MessageType)
     if _G.kickedalr or MessageType ~= Enum.MessageType.MessageError or not Message:match("^Server Kick Message:") then return end
     _G.kickedalr = true
