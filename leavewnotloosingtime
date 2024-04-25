@@ -1,4 +1,4 @@
-repeat wait() until game.Players.LocalPlayer.Character 
+repeat wait() until game.Players.LocalPlayer.Character.HumanoidRootPart
 if _G.load1ed then warn('alr loaded') return end
 _G.load1ed = true
 
