@@ -1,7 +1,7 @@
 repeat wait() until game.Players.LocalPlayer.Character
 repeat wait() until game.Players.LocalPlayer.Character.HumanoidRootPart
 if _G.load1ed then game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Already Loadedd", -- Required
+	Title = "Already Loaded", -- Required
 	Text = "" -- Required
 }) return end
 _G.load1ed = true
@@ -41,6 +41,6 @@ LogService.MessageOut:Connect(function(Message: string, MessageType: Enum.Messag
     TeleportService:TeleportToPlaceInstance(PlaceId, JobId, LocalPlayer)
 end)
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded, no errors", -- Required
+	Title = "Loaded, no errors. Safe grind is enabled", -- Required
 	Text = "" -- Required
 })
