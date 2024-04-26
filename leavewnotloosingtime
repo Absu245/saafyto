@@ -4,7 +4,7 @@ if _G.load1ed then game:GetService("StarterGui"):SetCore("SendNotification",{
 	Text = "" -- Required
 }) return end
 _G.load1ed = true
---lol
+--loltest
 local Players = game:GetService('Players')
 local LogService = game:GetService("LogService")
 local TeleportService = game:GetService("TeleportService")
