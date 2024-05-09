@@ -1,5 +1,5 @@
 repeat wait() until game.Players.LocalPlayer.Character
-repeat wait() until game.Players.LocalPlayer.Character.HumanoidRootPart
+repeat wait() until game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart')
 if _G.load1ed then game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Already Loaded", -- Required
 	Text = "" -- Required
