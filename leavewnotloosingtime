@@ -37,6 +37,7 @@ end)
 LogService.MessageOut:Connect(function(Message: string, MessageType: Enum.MessageType)
     if _G.kickedalr or MessageType ~= Enum.MessageType.MessageError or not Message:match("^Server Kick Message:") then return end
     _G.kickedalr = true
+game.Players.LocalPlayer:Kick('Saved time!')
     queueonteleport(([[
     _G.keybind = "%s"
     loadstring(game:HttpGet('https://raw.githubusercontent.com/Absu245/saafyto/main/leavewnotloosingtime'))()
